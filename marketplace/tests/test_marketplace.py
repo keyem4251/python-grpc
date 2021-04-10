@@ -1,4 +1,4 @@
-from online_book import __version__
+from marketplace import __version__
 
 
 def test_version():
