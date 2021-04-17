@@ -3,7 +3,12 @@ import random
 
 import grpc
 
-from recommendations_pb2 import BookCategory, BookRecommendation, RecommendationResponse, RecommendationRequest
+from recommendations_pb2 import (
+    BookCategory,
+    BookRecommendation,
+    RecommendationResponse,
+    RecommendationRequest,
+)
 import recommendations_pb2_grpc
 
 books_by_category = {
@@ -26,7 +31,9 @@ books_by_category = {
 
 
 class RecommendationService(recommendations_pb2_grpc.RecommendationsServicer):
-    def Recommend(self, request: RecommendationRequest, context: grpc.ServicerContext) -> RecommendationResponse:
+    def Recommend(
+        self, request: RecommendationRequest, context: grpc.ServicerContext
+    ) -> RecommendationResponse:
         if request.category not in books_by_category:
             context.abort(grpc.StatusCode.NOT_FOUND, "Category not found")
 
