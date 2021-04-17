@@ -1,1 +1,2 @@
-grpcio-tools ~= 1.30
+grpcio-tools == 1.34
+black

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 enum BookCategory {
     MYSTERY = 0;
-    SIENCE_FICTION = 1;
+    SCIENCE_FICTION = 1;
     SELF_HELP = 2;
 }
 
@@ -22,5 +22,5 @@ message RecommendationResponse {
 }
 
 service Recommendations {
-    rpc Recommend (RecommendationRequest) returns (RecommendationResponse)
+    rpc Recommend (RecommendationRequest) returns (RecommendationResponse);
 }
