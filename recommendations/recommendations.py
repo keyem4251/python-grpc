@@ -41,3 +41,17 @@ class RecommendationService(recommendations_pb2_grpc.RecommendationsServicer):
         num_results = min(request.max_results, len(books_for_category))
         books_to_recommend = random.sample(books_for_category, num_results)
         return RecommendationResponse(recommendations=books_to_recommend)
+
+
+def serve() -> None:
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    recommendations_pb2_grpc.add_RecommendationsServicer_to_server(
+        RecommendationService(), server
+    )
+    server.add_insecure_port("[::]:50051")
+    server.start()
+    server.wait_for_termination()
+
+
+if __name__ == "__main__":
+    serve()
