@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: marketplace
-          image: keyem4251/python-microservices-article-marketplace:0.1
+          image: keyem4251/marketplace:0.1
           env:
             - name: RECOMMENDATIONS_HOST
               value: recommendations
@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
         - name: recommendations
-          image: keyem4251/python-microservices-article-recommendations:0.1
+          image: keyem4251/recommendations:0.1
 ---
 apiVersion: v1
 kind: Service
