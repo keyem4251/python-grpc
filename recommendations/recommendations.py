@@ -2,6 +2,8 @@ from concurrent import futures
 import random
 
 import grpc
+from grpc_interceptor import ExceptionToStatusInterceptor
+from grpc_interceptor.exceptions import NotFound
 
 from recommendations_pb2 import (
     BookCategory,
@@ -35,7 +37,7 @@ class RecommendationService(recommendations_pb2_grpc.RecommendationsServicer):
         self, request: RecommendationRequest, context: grpc.ServicerContext
     ) -> RecommendationResponse:
         if request.category not in books_by_category:
-            context.abort(grpc.StatusCode.NOT_FOUND, "Category not found")
+            raise NotFound("Category Not Found")
 
         books_for_category = books_by_category[request.category]
         num_results = min(request.max_results, len(books_for_category))
@@ -44,7 +46,8 @@ class RecommendationService(recommendations_pb2_grpc.RecommendationsServicer):
 
 
 def serve() -> None:
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    interceptors = [ExceptionToStatusInterceptor()]
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), interceptors)
     recommendations_pb2_grpc.add_RecommendationsServicer_to_server(
         RecommendationService(), server
     )
