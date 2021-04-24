@@ -21,7 +21,7 @@ recommendations_host = os.getenv("RECOMMENDATIONS_HOST", "localhost")
 recommendations_channel = grpc.insecure_channel(f"{recommendations_host}:50051")
 recommendations_client = RecommendationsStub(recommendations_channel)
 
-auth_host = os.getenv("RECOMMENDATIONS_HOST", "localhost")
+auth_host = os.getenv("AUTH_HOST", "localhost")
 auth_channel = grpc.insecure_channel(f"{auth_host}:50052")
 auth_client = GreeterStub(auth_channel)
 
