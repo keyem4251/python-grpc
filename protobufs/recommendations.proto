@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-option go_package = "keyem4251/try-grpc-microservice-auth/pb";
-
 enum BookCategory {
     MYSTERY = 0;
     SCIENCE_FICTION = 1;
