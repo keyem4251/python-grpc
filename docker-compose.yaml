@@ -21,5 +21,13 @@ services:
         networks:
             - microservices
 
+    auth:
+        build:
+            context: .
+            dockerfile: auth/Dockerfile
+        image: auth
+        networks:
+            - microservices
+
 networks:
     microservices:

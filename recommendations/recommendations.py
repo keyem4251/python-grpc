@@ -47,7 +47,7 @@ class RecommendationService(recommendations_pb2_grpc.RecommendationsServicer):
 
 def serve() -> None:
     interceptors = [ExceptionToStatusInterceptor()]
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), interceptors)
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), interceptors=interceptors)
     recommendations_pb2_grpc.add_RecommendationsServicer_to_server(
         RecommendationService(), server
     )
