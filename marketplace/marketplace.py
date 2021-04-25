@@ -31,7 +31,7 @@ auth_client = GreeterStub(auth_channel)
 def render_homepage():
     user = session.get("user")
     if user is None:
-        return redirect(url_for("/login"))
+        return redirect(url_for("login"))
 
     request = RecommendationRequest(
         user_id=1, category=BookCategory.MYSTERY, max_results=3
@@ -49,8 +49,8 @@ def login():
     if request.method == "GET":
         return render_template("login.html", msg="")
 
-    email = request.form("email")
-    password = request.form("password")
+    email = request.form["email"]
+    password = request.form["password"]
     auth = init_auth()
     try:
         user = auth.sign_in_with_email_and_password(email, password)
@@ -63,4 +63,4 @@ def login():
 @app.route("/logout")
 def logout():
     del session["user"]
-    return redirect(url_for("/login"))
+    return redirect(url_for("login"))
