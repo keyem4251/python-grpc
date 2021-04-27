@@ -1,19 +1,18 @@
 import os
 import pyrebase
 
-  API_KEY = os.getenv("API_KEY")
-  AUTH_DOMAIN = os.getenv("API_KEY")
-  PROJECT_ID = os.getenv("API_KEY")
-  STORAGE_BUCKET = os.getenv("API_KEY")
-  MESSAGING_SENDER_ID = os.getenv("API_KEY")
-  APP_ID = os.getenv("API_KEY")
-  MEASUREMENT_ID = os.getenv("API_KEY")
-
+API_KEY = os.getenv("API_KEY")
+AUTH_DOMAIN = os.getenv("AUTH_DOMAIN")
+PROJECT_ID = os.getenv("PROJECT_ID")
+STORAGE_BUCKET = os.getenv("STORAGE_BUCKET")
+MESSAGING_SENDER_ID = os.getenv("MESSAGING_SENDER_ID")
+APP_ID = os.getenv("APP_ID")
+MEASUREMENT_ID = os.getenv("MEASUREMENT_ID")
 
 def init_auth():
     firebase_config = {
         "apiKey": API_KEY,
-        "authDoamin": AUTH_DOMAIN,
+        "authDomain": AUTH_DOMAIN,
         "projectId": PROJECT_ID,
         "storageBucket": STORAGE_BUCKET,
         "messagingSenderId": MESSAGING_SENDER_ID,

@@ -27,7 +27,7 @@ auth_host = os.getenv("AUTH_HOST", "localhost")
 auth_channel = grpc.insecure_channel(f"{auth_host}:50052")
 auth_client = GreeterStub(auth_channel)
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def render_homepage():
     user = session.get("user")
     if user is None:
@@ -55,7 +55,7 @@ def login():
     try:
         user = auth.sign_in_with_email_and_password(email, password)
         session["user"] = email
-        return redirect(url_for("/"))
+        return redirect(url_for("render_homepage"))
     except:
         return render_template("login.html", msg="メールアドレスまたはパスワードが間違っています。")
 
