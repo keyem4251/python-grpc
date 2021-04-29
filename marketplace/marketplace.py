@@ -9,11 +9,8 @@ from recommendations_pb2 import (
     RecommendationResponse,
 )
 from recommendations_pb2_grpc import RecommendationsStub
-from auth_pb2 import (
-    HelloRequest,
-    HelloResponse,
-)
-from auth_pb2_grpc import GreeterStub
+
+from inventory_pb2_grpc import InventoryStub
 from auth import init_auth
 
 app = Flask(__name__)
@@ -23,9 +20,10 @@ recommendations_host = os.getenv("RECOMMENDATIONS_HOST", "localhost")
 recommendations_channel = grpc.insecure_channel(f"{recommendations_host}:50051")
 recommendations_client = RecommendationsStub(recommendations_channel)
 
-auth_host = os.getenv("AUTH_HOST", "localhost")
-auth_channel = grpc.insecure_channel(f"{auth_host}:50052")
-auth_client = GreeterStub(auth_channel)
+inventory_host = os.getenv("INVENTORY_HOST", "localhost")
+inventory_channel = grpc.insecure_channel(f"{inventory_host}:50052")
+inventory_client = InventoryStub(inventory_channel)
+
 
 @app.route("/", methods=["GET"])
 def render_homepage():
@@ -38,10 +36,13 @@ def render_homepage():
     )
     response: RecommendationResponse = recommendations_client.Recommend(request)
 
-    auth_request = HelloRequest(name="World")
-    auth_response = auth_client.SayHello(auth_request)
+    books = inventory_client.List()
 
-    return render_template("homepage.html", recommendations=response.recommendations, auth=auth_response)
+    return render_template(
+        "homepage.html",
+        recommendations=response.recommendations,
+        books=books
+    )
 
 
 @app.route("/login", methods=["GET", "POST"])

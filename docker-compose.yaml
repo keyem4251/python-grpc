@@ -7,7 +7,7 @@ services:
             dockerfile: marketplace/Dockerfile
         environment: 
             RECOMMENDATIONS_HOST: recommendations
-            AUTH_HOST: auth
+            INVENTORY_HOST: inventory
         image: marketplace
         networks: 
             - microservices
@@ -22,11 +22,11 @@ services:
         networks:
             - microservices
 
-    auth:
+            inventory:
         build:
             context: .
-            dockerfile: auth/Dockerfile
-        image: auth
+            dockerfile: inventory/Dockerfile
+        image: inventory
         networks:
             - microservices
 

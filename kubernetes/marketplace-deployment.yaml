@@ -20,6 +20,9 @@ spec:
           env:
             - name: RECOMMENDATIONS_HOST
               value: recommendations
+          env:
+            - name: INVENTORY_HOST
+              value: inventory
           envFrom:
           - secretRef:
               name: firebase-config

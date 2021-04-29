@@ -4,13 +4,14 @@ isort:skip_file
 """
 import builtins
 import google.protobuf.descriptor
+import google.protobuf.internal.containers
 import google.protobuf.message
 import typing
 import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor = ...
 
-class HelloRequest(google.protobuf.message.Message):
+class Book(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
     NAME_FIELD_NUMBER: builtins.int
     name: typing.Text = ...
@@ -20,16 +21,18 @@ class HelloRequest(google.protobuf.message.Message):
         name : typing.Text = ...,
         ) -> None: ...
     def ClearField(self, field_name: typing_extensions.Literal[u"name",b"name"]) -> None: ...
-global___HelloRequest = HelloRequest
+global___Book = Book
 
-class HelloResponse(google.protobuf.message.Message):
+class BookList(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor = ...
-    MESSAGE_FIELD_NUMBER: builtins.int
-    message: typing.Text = ...
+    BOOKS_FIELD_NUMBER: builtins.int
+
+    @property
+    def books(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Book]: ...
 
     def __init__(self,
         *,
-        message : typing.Text = ...,
+        books : typing.Optional[typing.Iterable[global___Book]] = ...,
         ) -> None: ...
-    def ClearField(self, field_name: typing_extensions.Literal[u"message",b"message"]) -> None: ...
-global___HelloResponse = HelloResponse
+    def ClearField(self, field_name: typing_extensions.Literal[u"books",b"books"]) -> None: ...
+global___BookList = BookList

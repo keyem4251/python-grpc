@@ -5,7 +5,11 @@
 </head>
 <body>
     <h1>Mystery books you may like</h1>
-    <div>{{ auth }}</div>
+    <ul>
+        {% for book in books %}
+            <li>{{ book.name }}</li>
+        {% endfor %}        
+    </ul>
     <ul>
         {% for book in recommendations %}
             <li>{{ book.title }}</li>

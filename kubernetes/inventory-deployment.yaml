@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth
+  name: inventory
   labels: 
-    app: auth
+    app: inventory
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: auth
+      app: inventory
   template:
     metadata:
       labels:
-        app: auth
+        app: inventory
     spec:
       containers:
-        - name: auth
-          image: keyem4251/auth:0.1
+        - name: inventory
+          image: keyem4251/inventory:0.1

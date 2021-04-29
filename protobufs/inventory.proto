@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option go_package = "keyem4251/try-grpc-microservice-inventory/pb";
+
+service  Inventory  {
+    rpc List (google.protobuf.Empty) returns (BookList);
+}
+
+message Book {
+    string name = 1;
+}
+
+message BookList {
+    repeated Book books = 1;
+}

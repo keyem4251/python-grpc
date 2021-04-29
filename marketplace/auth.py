@@ -9,6 +9,7 @@ MESSAGING_SENDER_ID = os.getenv("MESSAGING_SENDER_ID")
 APP_ID = os.getenv("APP_ID")
 MEASUREMENT_ID = os.getenv("MEASUREMENT_ID")
 
+
 def init_auth():
     firebase_config = {
         "apiKey": API_KEY,
